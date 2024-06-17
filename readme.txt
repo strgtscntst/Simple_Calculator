@@ -10,7 +10,7 @@ Calculator appearance:
     -provide two variations of output
         -full inputs in gray and smaller, above
         -currently typed number/output darker, larger, below
-            -should be Input box for keyboard iput
+            -should be Input box for keyboard input
 ________________________________________________________________________________
 
 Calculator Function:
@@ -51,3 +51,11 @@ Assignment seems to expect me to have the buttons concat to a string that is the
     -thought: if I do this, have the operators apply a space (i.e.: " ADD ") to either side of the text. This can be used to convert the string to an array, split along " ".
 
 My first instinct is, instead, to assign button press values to A and B and operate on them there.
+
+Check to see if I can just put a listener on all buttons and then check one of the object values to get the number for use in calculations. This would make things a hell of a lot simpler.
+
+node.textContent = the info on the button.
+
+Make sure to set all operators to " + ", with the space on either side
+
+TODO: Ensure "nubmer =" inputs return only the number
