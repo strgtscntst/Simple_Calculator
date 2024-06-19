@@ -58,7 +58,3 @@ node.textContent = the info on the button.
 
 Make sure to set all operators to " + ", with the space on either side
 
-TODO: Ensure "nubmer =" inputs return only the number
-
-TODO: find & fix bug where display deletes first portion of a decimal number
-

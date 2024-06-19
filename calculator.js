@@ -78,6 +78,9 @@ function buttonPress(thisButton){
                     calcString = calcString.slice(0, calcString.length - 3)
                     opString = opString.slice(0, opString.length - 3)
             }
+            inputDisplay.textContent = opString;
+            fullDisplay.textContent = calcString;
+            
             break;
         case "C":   //"Clear" button
             calcString = "";
@@ -87,8 +90,10 @@ function buttonPress(thisButton){
             break;
         case "=":
             //if enter's already been pressed, repeat last operation
+            let lastOperation = opString;
+            opString = "";
             if(Array.from(calcString).filter((c) => c == "=").length == 2){
-                calcString = repeatOp(calcString, opString);
+                calcString = repeatOp(calcString, lastOperation);
                 // calcString = calcString.slice(0, calcString.length - 2)
             }
             
@@ -98,14 +103,14 @@ function buttonPress(thisButton){
             reset = true;
             break;
         default:    //digit inputs
-            if(reset){inputDisplay.textContent = ""};
+            if(fullReset){fullDisplay.textContent = ""};
             // inputDisplay.textContent = inputDisplay.textContent + calcString[calcString.length - 1];
             inputDisplay.textContent = opString
             reset = false;
             opReset = true;
             if(fullReset){
                 calcString = calcString[calcString.length - 1];
-                opString = ""
+                opString = calcString[calcString.length - 1]
                 // opString = opString[opString.length - 1];
             }
             fullReset = false;
