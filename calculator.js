@@ -68,33 +68,40 @@ function buttonPress(thisButton){
             opReset = false;
             fullReset = false;
             break;
-        case "E":   //"CE" or "Clear Entry" button, basically backspace
+
+        case "E":   //"CE" or "Clear Entry" button, removes last entry
             switch(calcString[calcString.length - 3]){
-                case " ":
+                case " ":   //removes self and operator, including operator whitepace
                     calcString = calcString.slice(0, calcString.length - 5);
                     opString = opString.slice(0, opString.length - 5);
                     break;
-                default: 
-                    calcString = calcString.slice(0, calcString.length - 3)
-                    opString = opString.slice(0, opString.length - 3)
+                default:    //removes self and one digit
+                    calcString = calcString.slice(0, calcString.length - 3);
+                    opString = opString.slice(0, opString.length - 3);
             }
+
+            //hardfix to bug where pressing CE on an empty calcstring/opstring leaves a "C" in display
+            if(opString == "C"){opString = ""};
+            if(calcString == "C"){calcString = ""};
+            
             inputDisplay.textContent = opString;
             fullDisplay.textContent = calcString;
             
             break;
+
         case "C":   //"Clear" button
             calcString = "";
             opString = "";
             inputDisplay.textContent = "";
             fullDisplay.textContent = "";
             break;
+
         case "=":
             //if enter's already been pressed, repeat last operation
             let lastOperation = opString;
             opString = "";
             if(Array.from(calcString).filter((c) => c == "=").length == 2){
                 calcString = repeatOp(calcString, lastOperation);
-                // calcString = calcString.slice(0, calcString.length - 2)
             }
             
             inputDisplay.textContent = runCalc(calcString)
@@ -102,43 +109,31 @@ function buttonPress(thisButton){
             fullReset = true;
             reset = true;
             break;
+            
         default:    //digit inputs
             if(fullReset){fullDisplay.textContent = ""};
-            // inputDisplay.textContent = inputDisplay.textContent + calcString[calcString.length - 1];
             inputDisplay.textContent = opString
             reset = false;
             opReset = true;
             if(fullReset){
                 calcString = calcString[calcString.length - 1];
                 opString = calcString[calcString.length - 1]
-                // opString = opString[opString.length - 1];
             }
             fullReset = false;
-        }
-        console.log("calcString: " + calcString)
-        console.log("opString: " + opString)
+    }
+    console.log("calcString: " + calcString)
+    console.log("opString: " + opString)
             
             
-        }
+}
         
-        //For each buttonpress
-        //Add buttonpress to the end of the calcString
-        //If there's two spaces in a row (doubled operators), remove the last 3 chars from the string
-        
-        //If last char is " ", run equasion & update fullDisplay
-        //Else Add buttonpress to the end of inputDisplay
-        //If last char is C, backspace
-        //If last char is E, set calString to ""
-        //If last char is "=", run equasion, update calcString output, and THEN set calcString to ""
-        
-        
-        function runCalc(){
-            console.log("Calc Ran")
-            return "total"
-        }
-        
-        function repeatOp(originalString, lastOperation){
-            console.log("repeated last operation")
-            
-            return originalString.slice(0, originalString.length - 4) + lastOperation + " ="
-        }
+function runCalc(){
+    console.log("Calc Ran")
+    return "total"
+}
+
+function repeatOp(originalString, lastOperation){
+    console.log("repeated last operation")
+    
+    return originalString.slice(0, originalString.length - 4) + lastOperation + " ="
+}
