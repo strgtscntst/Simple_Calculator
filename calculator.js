@@ -6,6 +6,7 @@ const inputDisplay = document.querySelector("#IOContainer");
 const BUTTONS = document.querySelectorAll("button");
 let calcString = "";
 let opString = "";
+let lastOperation = "";
 
 BUTTONS.forEach((node) => {
     node.onclick = (event) => {
@@ -98,8 +99,8 @@ function buttonPress(thisButton){
 
         case "=":
             //if enter's already been pressed, repeat last operation
-            let lastOperation = opString;
-            opString = "";
+            lastOperation = opString;
+            // opString = "";
             if(Array.from(calcString).filter((c) => c == "=").length == 2){
                 calcString = repeatOp(calcString, lastOperation);
             }
@@ -109,7 +110,7 @@ function buttonPress(thisButton){
             fullReset = true;
             reset = true;
             break;
-            
+
         default:    //digit inputs
             if(fullReset){fullDisplay.textContent = ""};
             inputDisplay.textContent = opString
@@ -127,9 +128,45 @@ function buttonPress(thisButton){
             
 }
         
-function runCalc(){
+function runCalc(runCalcString){
     console.log("Calc Ran")
-    return "total"
+
+    //convert runCalcString to array
+    let calcArr = runCalcString.slice(0, runCalcString.length - 2).split(" ");
+    calcArr = calcArr.map((n) => {
+        if(!isNaN(parseInt(n))){return parseFloat(n)}else{return n}
+    })
+    if(calcArr[calcArr.length - 1] == ""){calcArr.pop()}    //should be able to add this pop to the map line
+
+    let opTotal = 0;
+
+    //As long as there's enough elements to operate on,
+        //perform operation, and store result
+    while(calcArr.length > 2){
+        switch(calcArr[1]){
+            case "+":
+                 opTotal = calcArr[0] + calcArr[2];
+                break;
+            case "-":
+                 opTotal = calcArr[0] - calcArr[2];
+                break;
+            case "x":
+                 opTotal = calcArr[0] * calcArr[2];
+                break;
+            case "/":
+                opTotal = calcArr[0] / calcArr[2];
+                break;        
+            default:
+                console.log("Something went wrong.")
+                console.log(calcArr)
+                break;
+        }
+        calcArr = calcArr.slice(2)
+        calcArr[0] = opTotal;
+
+    }
+
+    return calcArr[0]
 }
 
 function repeatOp(originalString, lastOperation){

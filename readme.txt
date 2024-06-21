@@ -58,3 +58,6 @@ node.textContent = the info on the button.
 
 Make sure to set all operators to " + ", with the space on either side
 
+TODO: fix bug with infinity?
+
+TODO: protect agains "3 + . + 2"
