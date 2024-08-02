@@ -1,16 +1,63 @@
 /* debugging */
-*{
-    border: 1px dotted red;
-}
+/* *,
+*::after,
+*::before{
+    border: 1px dotted rgb(212, 97, 97);
+} */
 /* debugging */
 
 /* Structure */
+#calculator{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 800px;
+    width: 540px;
+    padding: 12px;
+}
 
+#display{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+#inputSection{
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    margin-top: 48px;
+}
+
+
+#fullCalcDisplay,
+#IOContainer{
+    flex:3;
+    font-size: 2rem;
+    justify-content: center;
+}
+
+.row{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    /* flex:1; */
+    margin: 12px;
+    border-radius: 16px;
+    width: 110px;
+    height: 100px;
+    
+}
 
 /* Structure */
 
 /* Colors and Fonts */
-
+button{
+    font-size: 2rem;
+    font-weight: bold;
+}
 
 
 /* Colors and Fonts */
