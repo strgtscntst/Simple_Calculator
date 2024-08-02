@@ -5,37 +5,7 @@
 /* debugging */
 
 /* Structure */
-#calculator{
-    width: 22rem;
-    height: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
 
-button{
-    height: 3rem;
-    width: 3rem;
-}
-
-#display > *{
-    align-content: right;
-
-}
-
-#inputSection{
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.row{
-    height: 50px;
-    width: 100%;
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-}
 
 /* Structure */
 
