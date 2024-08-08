@@ -33,7 +33,8 @@
 #IOContainer{
     flex:3;
     font-size: 2rem;
-    justify-content: center;
+    align-content: center;
+    padding: 36px;
 }
 
 .row{
@@ -54,10 +55,33 @@ button{
 /* Structure */
 
 /* Colors and Fonts */
+
 button{
     font-size: 2rem;
     font-weight: bold;
+    color: white;
+
 }
 
+#calculator{
+    background-color: #C1C3C8;
+}
+
+#IOContainer, #fullCalcDisplay{
+    background-color: white;
+    color:#454855
+}
+
+.number{
+    background-color: #454855;
+}
+
+.operator{
+    background-color: #3F7D20;
+}
+
+.function{
+    background-color: #72B91D;
+}
 
 /* Colors and Fonts */
